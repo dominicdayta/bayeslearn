@@ -41,7 +41,7 @@ for(i in 1:maxiter){
   
   # draw values for taussq
   tausq.hat <- sum((theta - mu)^2)/(J - 1)
-  tausq <- rinvchisq(1, nu = J - 1, tau=theta.hat)
+  tausq <- rinvchisq(1, nu = J - 1, tau=tausq.hat)
   
   # draw values for sigmasq
   sigmasq.hat <- sapply(groups, function(x){
@@ -64,13 +64,13 @@ for(i in 1:maxiter){
     thetahat <- thetahat.num / thetahat.den
     
     V = 1/thetahat.den
-    theta <- rnorm(1, thetahat, V)
+    theta <- rnorm(1, thetahat, sqrt(V))
     return(theta)
   })
   
   # draw values for mu
   muhat <- mean(theta)
-  mu <- rnorm(1, muhat, tausq/J)
+  mu <- rnorm(1, muhat, sqrt(tausq/J))
   
   outputs <- c(i, theta, mu, tausq, sigmasq)
   names(outputs) <- c("iter","theta1","theta2","theta3","theta4","mu","tausq","sigmasq")
