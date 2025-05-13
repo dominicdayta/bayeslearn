@@ -47,3 +47,8 @@ po/*~
 
 # RStudio Connect folder
 rsconnect/
+
+# Mac
+.DS_Store
+mcmc_gibbs/.DS_Store
+variational_inference/.DS_Store
